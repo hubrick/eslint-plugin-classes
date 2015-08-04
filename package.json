@@ -13,7 +13,8 @@
     "eslint-plugin-arrow-function": "0.0.2",
     "eslint-plugin-no-func-space": "0.0.4",
     "eslint-plugin-nodeca": "^1.0.3",
-    "eslint-tester": "^0.6.0",
+    "babel-eslint": "^4.0.5",
+    "eslint-tester": "cellule/eslint-tester#default_config",
     "mocha": "^2.2.5"
   },
   "homepage": "https://github.com/Jxck/eslint-plugin-classes",
@@ -35,6 +36,6 @@
   },
   "scripts": {
     "lint": "eslint -c .eslintrc index.js lib/**/*.js tests/**/*.js",
-    "test": "mocha tests/rules/"
+    "test": "mocha tests/rules"
   }
 }

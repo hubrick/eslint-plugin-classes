@@ -33,15 +33,15 @@ var invalidClass = [
 });
 
 var missingClass = [
-  'class {' +
+  'export default class {' +
   '}          ',
-  'class extends Bar {' +
+  'export default class extends Bar {' +
   '}          '
 ].map(function(code) {
   return {
     code: code,
     args: [ 1, 'class', 'name-required' ],
-    ecmaFeatures: { classes: true },
+    ecmaFeatures: { classes: true, modules: true},
     errors: [{ message: 'class name is required.' }]
   };
 });

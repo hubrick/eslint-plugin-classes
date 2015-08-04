@@ -55,8 +55,9 @@ class Foo {
 
 ### name
 
-- class name should start with upper case.
-- method name should start with lower case.
+- class name should start with upper case (option: "class")
+- method name should start with lower case (option: "method")
+- class name is required (option: "name-required")
 
 The following patterns are considered warnings:
 
@@ -91,7 +92,7 @@ plugins:
 rules:
   # Plugins
   classes/space  : 2
-  classes/name   : [2, "class", "name"]
+  classes/name   : [2, "class", "name-required", "method"]
 ```
 
 ## License

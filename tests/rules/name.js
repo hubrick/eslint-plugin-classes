@@ -20,8 +20,6 @@ var valid = [
   };
 });
 
-var klass = 'class name should start with upper case.';
-
 var invalidClass = [
   'class foo {' +
   '}          '
@@ -30,7 +28,21 @@ var invalidClass = [
     code: code,
     args: [ 1, 'class', 'method' ],
     ecmaFeatures: { classes: true },
-    errors: [{ message: klass }]
+    errors: [{ message: 'class name should start with upper case.' }]
+  };
+});
+
+var missingClass = [
+  'class {' +
+  '}          ',
+  'class extends Bar {' +
+  '}          '
+].map(function(code) {
+  return {
+    code: code,
+    args: [ 1, 'class', 'name-required' ],
+    ecmaFeatures: { classes: true },
+    errors: [{ message: 'class name is required.' }]
   };
 });
 
@@ -51,5 +63,5 @@ var invalidMethod = [
 
 eslintTester.addRuleTest('./lib/rules/name', {
   valid: valid,
-  invalid: invalidClass.concat(invalidMethod)
+  invalid: invalidClass.concat(missingClass).concat(invalidMethod)
 });

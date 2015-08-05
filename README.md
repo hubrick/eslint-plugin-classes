@@ -83,6 +83,50 @@ class Foo {
 }
 ```
 
+### properties
+
+This feature is ES7 ([proposal stage](https://gist.github.com/jeffmo/054df782c05639da2adb)). 
+It has been tested with the non-default parser *babel-eslint*, because at the moment *esprima* doesn't recognize 
+properties and throws errors.
+
+The following patterns are NOT valid:
+
+```js
+class Foo {
+  baz() {}
+  static bar = 1;
+}
+class Foo {
+  baz() {}
+  bar = 2;
+}  
+```
+
+The following patterns are valid:
+
+```js
+class Foo {
+  bar = 3; 
+}          
+class Foo {
+  bar = 2;
+  baz() {}
+}        
+class Foo {
+  /* comments allowed */
+  bar = 2;
+  baz() {}
+}        
+class Foo {
+  bar() {}
+}        
+class Foo {
+  static bar = 1;
+  baz() {}
+}
+```
+
+
 ## Usage
 
 ```yaml
@@ -93,6 +137,7 @@ rules:
   # Plugins
   classes/space  : 2
   classes/name   : [2, "class", "name-required", "method"]
+  classes/properties   : [2, "on-top"]
 ```
 
 ## License

@@ -99,33 +99,33 @@ The following patterns are **INVALID**:
 1. Without `statics-first`:
   ```js
   class Foo {
-    static alpha = 1
-    static gamma() {};
-    beta = 2
+    static alpha = 1;
+    static gamma() {}
+    beta = 2;
     delta() {}
   }
 
   class Foo {
-    beta = 2
-    static alpha = 1
-    static gamma() {};
+    beta = 2;
+    static alpha = 1;
+    static gamma() {}
     delta() {}
   }
 
   class Foo {
-    static alpha = 1
-    static beta() {};
-    gamma = 2
+    static alpha = 1;
+    static beta() {}
+    gamma = 2;
     delta() {}
-    gamma2 = 3
+    gamma2 = 3;
   }
   ```
 2. With `statics-first`:
   ```js
   class Foo {
-    static alpha = 1
-    gamma = 2
-    static beta() {};
+    static alpha = 1;
+    gamma = 2;
+    static beta() {}
     delta() {}
   }
   ```
@@ -135,9 +135,9 @@ The following patterns are **VALID**:
 1. Without `statics-first`:
   ```js
   class Foo {
-    static alpha = 1
-    beta = 2
-    static gamma() {};
+    static alpha = 1;
+    beta = 2;
+    static gamma() {}
     delta() {}
   }
 
@@ -150,9 +150,9 @@ The following patterns are **VALID**:
 2. With `statics-first`:
   ```js
   class Foo {
-    static alpha = 1
+    static alpha = 1;
     static beta() {};
-    gamma = 2
+    gamma = 2;
     delta() {}
   }
   ```

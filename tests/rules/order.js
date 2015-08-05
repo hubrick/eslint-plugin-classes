@@ -25,8 +25,8 @@ var validWithoutStatics = [
   '}          ',
 
   'class Foo {' +
-  '  static alpha = 1' +
-  '  static beta() {};' +
+  '  static alpha = 1;' +
+  '  static beta() {}' +
   '  gamma() {}' +
   '}          ',
 
@@ -37,9 +37,9 @@ var validWithoutStatics = [
   '}          ',
 
   'class Foo {' +
-  '  static alpha = 1' +
-  '  gamma = 2' +
-  '  static beta() {};' +
+  '  static alpha = 1;' +
+  '  gamma = 2;' +
+  '  static beta() {}' +
   '  delta() {}' +
   '}          ',
 
@@ -63,15 +63,15 @@ var validWithoutStatics = [
 var validWithStatics = [
 
   'class Foo {' +
-  '  static alpha = 1' +
-  '  static beta() {};' +
-  '  gamma = 2' +
+  '  static alpha = 1;' +
+  '  static beta() {}' +
+  '  gamma = 2;' +
   '}          ',
 
   'class Foo {' +
-  '  static alpha = 1' +
-  '  static beta() {};' +
-  '  gamma = 2' +
+  '  static alpha = 1;' +
+  '  static beta() {}' +
+  '  gamma = 2;' +
   '  delta() {}' +
   '}          ',
 
@@ -99,29 +99,24 @@ var validWithStatics = [
 
 
 
-var invalidWithoutStatics = [
+var invalidWithoutStatics1 = [
 
   'class Foo {' +
-  '  static beta() {}' +
   '  static alpha = 1;' +
-  '}          ',
-
-  'class Foo {' +
-  '  static alpha = 1' +
-  '  static beta() {};' +
+  '  static beta() {}' +
   '  delta() {}' +
-  '  gamma = 2' +
+  '  gamma = 2;' +
   '}          ',
 
   'class Foo {' +
   '  delta() {}' +
-  '  gamma = 2' +
+  '  gamma = 2;' +
   '}          ',
 
   'class Foo {' +
-  '  static alpha = 1' +
+  '  static alpha = 1;' +
+  '  gamma = 2;' +
   '  static beta() {};' +
-  '  gamma = 2' +
   '  delta() {}' +
   '  gamma2 = 3' +
   '}          '
@@ -130,45 +125,92 @@ var invalidWithoutStatics = [
         code: code,
         args: [ 1 ],
         ecmaFeatures: { classes: true },
-        errors: [{ message: 'properties should be declared before methods.' }]
+        errors: [{ message: 'object properties should be declared before object methods.' }]
       };
     });
 
-var invalidWithStatics = [
+var invalidWithoutStatics2 = [{
+    code:
+      'class Foo {' +
+      '  static beta() {}' +
+      '  static alpha = 1;' +
+      '}          ',
+    args: [ 1 ],
+    ecmaFeatures: { classes: true },
+    errors: [{ message: 'static properties should be declared before static methods.' }]
+  }, {
+    code:
+      'class Foo {' +
+      '  beta() {}' +
+      '  static alpha = 1;' +
+      '}          ',
+    args: [ 1 ],
+    ecmaFeatures: { classes: true },
+    errors: [{ message: 'static properties should be declared before object methods.' }]
+  }];
+
+var invalidWithStatics1 = [
 
   'class Foo {' +
-  '  gamma = 2' +
-  '  static alpha = 1' +
+  '  static alpha = 1;' +
+  '  gamma = 2;' +
   '  static beta() {};' +
   '  delta() {}' +
   '}          ',
 
   'class Foo {' +
-  '  static alpha = 1' +
-  '  gamma = 2' +
-  '  static beta() {};' +
+  '  static alpha = 1;' +
+  '  static beta() {}' +
+  '  gamma = 2;' +
   '  delta() {}' +
-  '}          ',
-
-  'class Foo {' +
-  '  static alpha = 1' +
-  '  static beta() {};' +
-  '  gamma = 2' +
-  '  delta() {}' +
-  '  static beta2 = 3' +
+  '  static beta2 = 3;' +
   '}          '
 ].map(function(code) {
       return {
         code: code,
         args: [ 1, 'statics-first' ],
         ecmaFeatures: { classes: true },
-        errors: [{ message: 'statics members should be declared on top.' }]
+        errors: [{ message: 'static methods should be declared before object properties.' }]
       };
     });
 
+var invalidWithStatics = [{
+    code:
+      'class Foo {' +
+      '  static beta() {}' +
+      '  static alpha = 1;' +
+      '}          ',
+    args: [ 1, 'statics-first' ],
+    ecmaFeatures: { classes: true },
+    errors: [{ message: 'static properties should be declared before static methods.' }]
+  }, {
+    code:
+      'class Foo {' +
+      '  static alpha = 1;' +
+      '  gamma = 2;' +
+      '  static beta() {};' +
+      '  delta() {}' +
+      '}          ',
+    args: [ 1, 'statics-first' ],
+    ecmaFeatures: { classes: true },
+    errors: [{ message: 'static methods should be declared before object properties.' }]
+  },{
+    code:
+      'class Foo {' +
+      '  static alpha = 1;' +
+      '  static beta() {}' +
+      '  gamma = 2;' +
+      '  delta() {}' +
+      '  static beta2 = 3;' +
+      '}          ',
+    args: [ 1, 'statics-first' ],
+    ecmaFeatures: { classes: true },
+    errors: [{ message: 'static properties should be declared before object methods.' }]
+  }];
+
 eslintTester.addRuleTest('./lib/rules/order', {
   valid: validWithoutStatics.concat(validWithStatics),
-  invalid: invalidWithoutStatics.concat(invalidWithStatics)
+  invalid: invalidWithoutStatics1.concat(invalidWithoutStatics2).concat(invalidWithStatics)
 });
 
 ESLintTester.setDefaultConfig(initialConfig);

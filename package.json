@@ -37,6 +37,6 @@
   "scripts": {
     "lint": "eslint -c .eslintrc index.js lib/**/*.js tests/**/*.js",
     "test": "mocha tests/rules",
-    "test-properties": "mocha tests/rules/properties"
+    "test-properties": "mocha tests/rules/order"
   }
 }

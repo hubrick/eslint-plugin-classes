@@ -96,7 +96,7 @@ properties and throws errors.
 
 The following patterns are **INVALID**:
 
-1. Without `statics-first`:
+* Without `statics-first`:
   ```js
   class Foo {
     static alpha = 1;
@@ -120,7 +120,8 @@ The following patterns are **INVALID**:
     gamma2 = 3;
   }
   ```
-2. With `statics-first`:
+  
+* With `statics-first`:
   ```js
   class Foo {
     static alpha = 1;
@@ -132,7 +133,7 @@ The following patterns are **INVALID**:
 
 The following patterns are **VALID**:
 
-1. Without `statics-first`:
+* Without `statics-first`:
   ```js
   class Foo {
     static alpha = 1;
@@ -147,7 +148,8 @@ The following patterns are **VALID**:
     delta() {}
   }
   ```
-2. With `statics-first`:
+  
+* With `statics-first`:
   ```js
   class Foo {
     static alpha = 1;

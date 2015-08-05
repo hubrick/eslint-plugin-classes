@@ -9,7 +9,7 @@
     "url": "https://github.com/Jxck/eslint-plugin-classes/issues"
   },
   "devDependencies": {
-    "eslint": "^0.21.2",
+    "eslint": "^1.0.0",
     "eslint-plugin-arrow-function": "0.0.2",
     "eslint-plugin-no-func-space": "0.0.4",
     "eslint-plugin-nodeca": "^1.0.3",
@@ -28,7 +28,7 @@
   "license": "MIT",
   "main": "index.js",
   "peerDependencies": {
-    "eslint": ">=0.20.0"
+    "eslint": "^1.0.0"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
   },
   "scripts": {
     "lint": "eslint -c .eslintrc index.js lib/**/*.js tests/**/*.js",
-    "test": "mocha tests/rules"
+    "test": "mocha tests/rules",
+    "test-properties": "mocha tests/rules/properties"
   }
 }

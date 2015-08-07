@@ -28,7 +28,7 @@
   "license": "MIT",
   "main": "index.js",
   "peerDependencies": {
-    "eslint": "^1.0.0"
+    "eslint": "eslint@>=0.9.0 || ~1.0.0-rc-0"
   },
   "repository": {
     "type": "git",
